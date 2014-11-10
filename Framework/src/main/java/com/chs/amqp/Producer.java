@@ -14,10 +14,7 @@ public class Producer {
 
 	public int publish() {
 		
-		ApplicationContext context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
-		AmqpTemplate amqpTemplate = context.getBean(AmqpTemplate.class);
-		amqpTemplate.convertAndSend(message);
-		System.out.println("Sent:" + message);
+		new AnnotationConfigApplicationContext(ProducerConfiguration.class);
 		return 0;
 		
 	}
