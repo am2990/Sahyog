@@ -57,13 +57,14 @@
         </property>
     </bean>
      
-    <bean id="employeeDAO" class="com.chs.dao.EmployeeDaoImpl"></bean>
-    <bean id="employeeService" class="com.chs.service.EmployeeServiceImpl"></bean>
+    <bean id="userDAO" class="com.chs.dao.UserDaoImpl"></bean>
+    <bean id="userService" class="com.chs.service.UserServiceImpl"></bean>
   
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+     
      
 </beans>

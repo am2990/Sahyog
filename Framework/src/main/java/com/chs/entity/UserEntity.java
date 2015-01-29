@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
  
 @Entity
-@Table(name="EMPLOYEE")
-public class EmployeeEntity 
+@Table(name="USERS")
+public class UserEntity 
 {
     @Id
     @Column(name="ID")
@@ -20,9 +20,9 @@ public class EmployeeEntity
     private String lastname;
     @Column(name="EMAIL")
     private String email;
-    @Column(name="TELEPHONE")
-    private String telephone;
-    //Add setters and getters
+    @Column(name="PASSWORD")
+    private String password;
+    
     
 	public Integer getId() {
 		return id;
@@ -48,11 +48,11 @@ public class EmployeeEntity
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getTelephone() {
-		return telephone;
+	public String getPassword() {
+		return password;
 	}
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setPassword(String password) {
+		this.password = password;
 	}
     
 }

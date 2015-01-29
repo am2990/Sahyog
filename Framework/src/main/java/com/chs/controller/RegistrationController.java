@@ -1,5 +1,6 @@
 package com.chs.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,54 +17,78 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chs.amqp.Producer;
-import com.chs.entity.EmployeeEntity;
-import com.chs.service.EmployeeService;
+import com.chs.entity.UserEntity;
+import com.chs.service.UserService;
  
 
 
  
 @Controller
-public class EmployeeController 
+public class RegistrationController 
 {
     @Autowired
-    private EmployeeService employeeManager;
+    private UserService userManager;
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String listEmployees(ModelMap map)
+    public String listUsers(ModelMap map)
     {
-        map.addAttribute("employee", new EmployeeEntity());
-        map.addAttribute("employeeList", employeeManager.getAllEmployees());
-        return "editEmployeeList";
+//        map.addAttribute("user", new UserEntity());
+//        map.addAttribute("userList", userManager.getAllUsers());
+        return "index";
+    }
+    
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addNewUsers(ModelMap map)
+    {
+        map.addAttribute("user", new UserEntity());
+        map.addAttribute("userList", userManager.getAllUsers());
+        return "editUserList";
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute(value="employee") EmployeeEntity employee, BindingResult result)
+    public String addUser(@ModelAttribute(value="user") UserEntity user, BindingResult result)
     {
-    	Producer p = new Producer(employee.getFirstname());
-    	p.publish();
-        employeeManager.addEmployee(employee);
+    	//Producer p = new Producer(user.getFirstname());
+    	//p.publish();
+        userManager.addUser(user);
         return "redirect:/";
     }
-    @RequestMapping("/delete/{employeeId}")
-    public String deleteEmplyee(@PathVariable("employeeId") Integer employeeId)
+    
+    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
+    public String loginUser(HttpServletRequest request, 
+            @RequestParam(value="username", required=false) String email, 
+            @RequestParam(value="pass", required=false) String password,
+            ModelMap map)
     {
-        employeeManager.deleteEmployee(employeeId);
-        return "redirect:/";
-    }
-    public void setEmployeeManager(EmployeeService employeeManager) {
-        this.employeeManager = employeeManager;
+    	//Producer p = new Producer(user.getFirstname());
+    	//p.publish();
+        //userManager.addUser(user);
+    	map.addAttribute("user", email);
+    	System.out.println(email);
+        return "dashboard";
     }
     
     
-    @RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-	public ModelAndView defaultPage() {
- 
-	  ModelAndView model = new ModelAndView();
-	  model.addObject("title", "Spring Security Login Form - Database Authentication");
-	  model.addObject("message", "This is default page!");
-	  model.setViewName("hello");
-	  return model;
- 
-	}
+    @RequestMapping("/delete/{userId}")
+    public String deleteUser(@PathVariable("userId") Integer employeeId)
+    {
+        userManager.deleteUser(employeeId);
+        return "redirect:/";
+    }
+    public void setUserManager(UserService userManager) {
+        this.userManager = userManager;
+    }
+    
+    
+//    @RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+//	public ModelAndView defaultPage() {
+// 
+//	  ModelAndView model = new ModelAndView();
+//	  model.addObject("title", "Spring Security Login Form - Database Authentication");
+//	  model.addObject("message", "This is default page!");
+//	  model.setViewName("hello");
+//	  return model;
+// 
+//	}
  
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
