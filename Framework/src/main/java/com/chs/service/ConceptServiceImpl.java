@@ -25,4 +25,11 @@ public class ConceptServiceImpl implements ConceptService{
 		
 	}
 
+
+	@Override
+	public ConceptDictionary getConceptByName(String conceptname) {
+		return this.conceptDAO.getConceptByName(conceptname);
+	}
+	
+
 }

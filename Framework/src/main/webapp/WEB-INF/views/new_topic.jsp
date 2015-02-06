@@ -80,9 +80,10 @@
     </nav>
 
     <!-- Page Content -->
-        <div class="container">
     
-		    <form class="form-horizontal">
+        <div class="container" >
+    
+	 <form:form class="form-horizontal" method="post" action="newtopic" commandName="topic">
 		<fieldset>
 		
 		<!-- Form Name -->
@@ -103,7 +104,8 @@
 		<div class="control-group">
 		  <label class="control-label" for="topic_concept">Concepts</label>
 		  <div class="controls">
-		  <select id="topic_concept" name="topic_concept" class="input-xlarge" multiple="multiple">
+		  	
+		  <select id="concept_id" name="concept_id" class="input-xlarge" multiple="multiple">
 		  <c:forEach items="${conceptList}" var="cpt">
 		      <option>${cpt.conceptName }</option>
 		    </c:forEach>
@@ -115,7 +117,7 @@
 		<div class="control-group">
 		  <label class="control-label" for="topic_dissag">Dissagregation</label>
 		  <div class="controls">
-		  <select id="topic_dissag" name="topic_dissag" class="input-xlarge">
+		  <select id="dissag" name="topic_dissag" class="input-xlarge">
 		    <c:forEach items="${dissagList}" var="dsg">		    
 		      <option>${dsg.dissagName }</option>
 		    </c:forEach>  
@@ -133,7 +135,8 @@
 		</div>
 		
 		</fieldset>
-		</form>
+			
+	</form:form>
     
     </div>
     <!-- /.container -->

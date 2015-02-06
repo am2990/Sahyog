@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -25,13 +25,13 @@ public class Topic {
     @Column(name="topic_name")
     private String topicname;
     
-    //@OneToOne(cascade = CascadeType.ALL)
-    @Column(name="concept_id")
-    private Integer concept_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="Concept_Id")
+    private ConceptDictionary Concept_Id;
     
-    //@OneToOne(cascade = CascadeType.ALL)
-    @Column(name="dissag_id")
-    private Integer dissag_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="Dissag_Id")
+    private DissagregationDictionary Dissag_Id;
 
     public Integer getId() {
 		return id;
@@ -45,5 +45,20 @@ public class Topic {
 	public void setTopicname(String topicname) {
 		this.topicname = topicname;
 	}
+	
+    public void setConcept(ConceptDictionary concept){
+    	this.Concept_Id = concept;
+    }
     
+    public ConceptDictionary getConcept(){
+    	return this.Concept_Id;
+    }
+    
+    public void setDisagregation(DissagregationDictionary dissag){
+    	this.Dissag_Id = dissag;
+    }
+    
+    public DissagregationDictionary getDissagreagtion(){
+    	return this.Dissag_Id;
+    }
 }

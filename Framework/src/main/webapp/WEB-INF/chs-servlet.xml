@@ -66,6 +66,9 @@
   	<bean id="dissagDAO" class="com.chs.dao.DissagregationDAOImpl"></bean>
     <bean id="dissagregationService" class="com.chs.service.DissagregationServiceImpl"></bean>
     
+    <bean id="topicDAO" class="com.chs.dao.TopicDAOImpl"></bean>
+    <bean id="topicService" class="com.chs.service.TopicServiceImpl"></bean>
+    
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate4.HibernateTransactionManager">

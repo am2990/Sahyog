@@ -8,5 +8,5 @@ public interface DissagregationService {
 	
     public List<DissagregationDictionary> getAllDissagregations();
 
-
+    public DissagregationDictionary getDissagregationByName(String name);
 }

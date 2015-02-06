@@ -2,11 +2,15 @@ package com.chs.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chs.entity.ConceptDictionary;
 import com.chs.entity.DissagregationDictionary;
 
 @Transactional 
@@ -22,6 +26,16 @@ public class DissagregationDAOImpl implements DissagregationDAO{
 		
 		return this.sessionFactory.getCurrentSession().createQuery("from DissagregationDictionary").list();
 		
+	}
+	
+public DissagregationDictionary getDissagregationByName(String name){
+		
+		Session session = this.sessionFactory.getCurrentSession();
+	    Criteria cr = session.createCriteria(DissagregationDictionary.class);
+	    cr.add(Restrictions.eq("dissagName", name));
+	    DissagregationDictionary result = (DissagregationDictionary)cr.uniqueResult();
+	    
+	    return result;
 	}
 
 }

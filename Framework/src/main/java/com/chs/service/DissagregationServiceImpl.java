@@ -15,8 +15,12 @@ public class DissagregationServiceImpl implements DissagregationService{
 	private DissagregationDAO dissagregationDAO;
 	@Override
 	public List<DissagregationDictionary> getAllDissagregations() {
-		// TODO Auto-generated method stub
+		
 		return this.dissagregationDAO.getAllDissags();
+	}
+	
+	public DissagregationDictionary getDissagregationByName(String name){
+		return this.dissagregationDAO.getDissagregationByName(name);
 	}
 
 	

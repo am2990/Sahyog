@@ -20,16 +20,19 @@ public class UserServiceImpl implements UserService
     public void addUser(UserEntity user) {
         userDAO.addUser(user);
     }
+    
     @Override
     @Transactional
     public List<UserEntity> getAllUsers() {
         return userDAO.getAllUsers();
     }
+    
     @Override
     @Transactional
     public void deleteUser(Integer userId) {
         userDAO.deleteUser(userId);
     }
+    
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
@@ -37,4 +40,5 @@ public class UserServiceImpl implements UserService
     public boolean isUser(String user, String pass){
     	return userDAO.isUser(user, pass);
     }
+    
 }
