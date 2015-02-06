@@ -33,4 +33,8 @@ public class UserServiceImpl implements UserService
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
+    
+    public boolean isUser(String user, String pass){
+    	return userDAO.isUser(user, pass);
+    }
 }

@@ -6,5 +6,8 @@
 <hibernate-configuration>
     <session-factory>
         <mapping class="com.chs.entity.UserEntity"></mapping>
+        <mapping class="com.chs.entity.Topic"></mapping>
+        <mapping class="com.chs.entity.ConceptDictionary"></mapping>
+        <mapping class="com.chs.entity.DissagregationDictionary"></mapping>
     </session-factory>
 </hibernate-configuration>

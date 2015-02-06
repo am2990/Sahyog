@@ -7,19 +7,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
  
 @Entity
-@Table(name="USERS")
+@Table(name="users")
 public class UserEntity 
 {
     @Id
     @Column(name="ID")
     @GeneratedValue
     private Integer id;
+    
     @Column(name="FIRSTNAME")
     private String firstname;
+    
     @Column(name="LASTNAME")
     private String lastname;
+    
     @Column(name="EMAIL")
     private String email;
+    
     @Column(name="PASSWORD")
     private String password;
     

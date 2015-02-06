@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td><form:label path="password"><spring:message code="label.password"/></form:label></td>
-            <td><form:input path="password" class="form-control"/></td>
+            <td><form:input path="password" type="password" class="form-control"/></td>
         </tr>
         <tr>
             <td colspan="2">

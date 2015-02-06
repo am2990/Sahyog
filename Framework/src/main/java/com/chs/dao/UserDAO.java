@@ -10,4 +10,5 @@ public interface UserDAO
    public void addUser(UserEntity user);
    public List<UserEntity> getAllUsers();
    public void deleteUser(Integer userId);
+   public boolean isUser(String user, String pass);
 }

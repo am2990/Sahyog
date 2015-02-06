@@ -1,6 +1,7 @@
 package com.chs.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chs.amqp.Producer;
 import com.chs.entity.UserEntity;
 import com.chs.service.UserService;
  
@@ -26,8 +26,9 @@ import com.chs.service.UserService;
 @Controller
 public class RegistrationController 
 {
-    @Autowired
+	@Autowired
     private UserService userManager;
+	
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String listUsers(ModelMap map)
     {
@@ -62,9 +63,13 @@ public class RegistrationController
     	//Producer p = new Producer(user.getFirstname());
     	//p.publish();
         //userManager.addUser(user);
-    	map.addAttribute("user", email);
-    	System.out.println(email);
-        return "dashboard";
+    	boolean exist = userManager.isUser(email,password);
+    	if(exist){
+    		map.addAttribute("user", email);
+    		System.out.println(email);
+    		return "dashboard";
+    	}
+        return "redirect:/";
     }
     
     

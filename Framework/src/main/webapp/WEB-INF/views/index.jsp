@@ -22,6 +22,12 @@
   <div class="login-card">
     <h1>Log-in</h1><br>
   	<form:form method="post" action="/chs/dashboard/">
+  		<!--  <div th:if="${param.error}" class="alert alert-error">    
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success"> 
+                    You have been logged out.
+        </div> -->
 	    <input type="text" name="username" placeholder="Username or Email">
 	    <input type="password" name="pass" placeholder="Password">
 	    <input type="submit" class="login login-submit" value="login">
@@ -35,7 +41,7 @@
 <!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
 
   <script src='http://codepen.io/assets/libs/fullpage/jquery_and_jqueryui.js'></script>
-
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </body>
 
 </html>

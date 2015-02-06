@@ -97,16 +97,17 @@
 		  </div>
 		</div>
 		
+		
+		
 		<!-- Select Multiple -->
 		<div class="control-group">
 		  <label class="control-label" for="topic_concept">Concepts</label>
 		  <div class="controls">
-		    <select id="topic_concept" name="topic_concept" class="input-xlarge" multiple="multiple">
-		      <option>Option one</option>
-		      <option>Option two</option>
-		      <option>Option Three</option>
-		      <option>Option Four</option>
-		    </select>
+		  <select id="topic_concept" name="topic_concept" class="input-xlarge" multiple="multiple">
+		  <c:forEach items="${conceptList}" var="cpt">
+		      <option>${cpt.conceptName }</option>
+		    </c:forEach>
+		  </select>    
 		  </div>
 		</div>
 		
@@ -114,11 +115,11 @@
 		<div class="control-group">
 		  <label class="control-label" for="topic_dissag">Dissagregation</label>
 		  <div class="controls">
-		    <select id="topic_dissag" name="topic_dissag" class="input-xlarge">
-		      <option>Option one</option>
-		      <option>Option two</option>
-		      <option>Option Three</option>
-		    </select>
+		  <select id="topic_dissag" name="topic_dissag" class="input-xlarge">
+		    <c:forEach items="${dissagList}" var="dsg">		    
+		      <option>${dsg.dissagName }</option>
+		    </c:forEach>  
+		  </select>
 		  </div>
 		</div>
 		
