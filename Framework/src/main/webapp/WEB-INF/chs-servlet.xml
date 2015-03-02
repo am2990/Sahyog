@@ -19,6 +19,9 @@
     <context:annotation-config />
     <context:component-scan base-package="com.chs.controller" />
   
+  	<import resource="classpath:rabbitConfiguration.xml" />
+  
+  
     <bean id="jspViewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"
@@ -69,11 +72,13 @@
     <bean id="topicDAO" class="com.chs.dao.TopicDAOImpl"></bean>
     <bean id="topicService" class="com.chs.service.TopicServiceImpl"></bean>
     
+    <bean id="publishService" class="com.chs.service.PublishServiceImpl"/>
+    
+    
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-     
-     
+     	 
 </beans>

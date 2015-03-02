@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HelloWorldConfiguration {
 
-	protected final String helloWorldQueueName = "hello.world.queue";
+	protected final String helloWorldQueueName = "bkb";
 
 	@Bean
 	public ConnectionFactory connectionFactory() {

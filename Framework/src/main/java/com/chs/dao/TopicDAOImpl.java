@@ -2,7 +2,10 @@ package com.chs.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +50,18 @@ public class TopicDAOImpl implements TopicDAO{
         if (null != topic) {
             this.sessionFactory.getCurrentSession().delete(topic);
         }
+	}
+
+
+	@Override
+	public Topic getTopicByName(String topicname) {
+		
+		Session session = this.sessionFactory.getCurrentSession();
+	    Criteria cr = session.createCriteria(Topic.class);
+	    cr.add(Restrictions.eq("topic_name", topicname));
+	    Topic result = (Topic) cr.uniqueResult();
+	    return result;
+	    
 	}
 
 }

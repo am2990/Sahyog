@@ -1,25 +1,36 @@
 package com.chs.amqp;
 
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor;
+
 
 @Configuration
-public class ProducerConfiguration {
+public class ProducerConfiguration{
 
-	protected final String helloWorldQueueName = "hello.world.queue";
+	
+	protected String helloWorldQueueName = "hello.world.not";
+	private RabbitTemplate template = null; 
+	
+	
 
-	@Bean
+	public void setQueueName(String queueName) {
+		this.helloWorldQueueName = queueName;
+	//	this.rabbitTemplate = rabbitTemplate();
+	}
+	
+	public String getQueueName() {
+		return this.helloWorldQueueName;
+	}
+
+	
 	public RabbitTemplate rabbitTemplate() {
-		RabbitTemplate template = new RabbitTemplate(connectionFactory());
+		template = new RabbitTemplate(connectionFactory());
+		System.out.println("Setting routing key:"+this.helloWorldQueueName);
 		template.setRoutingKey(this.helloWorldQueueName);
 		return template;
 	}
@@ -32,28 +43,16 @@ public class ProducerConfiguration {
 		return connectionFactory;
 	}
 
-	@Bean
-	public ScheduledProducer scheduledProducer() {
-		return new ScheduledProducer();
+
+	public boolean sendMessage(String data) {
+		//TODO add bean dependency on PublishData instead of direct data
+		rabbitTemplate();
+		System.out.println("sending to queue:");
+		template.convertAndSend("Hello World " + data);
+		return true;
 	}
 
-	@Bean
-	public BeanPostProcessor postProcessor() {
-		return new ScheduledAnnotationBeanPostProcessor();
-	}
 
-
-	static class ScheduledProducer {
-
-		@Autowired
-		private volatile RabbitTemplate rabbitTemplate;
-
-		private final AtomicInteger counter = new AtomicInteger();
-
-		@Scheduled(fixedRate = 3000)
-		public void sendMessage() {
-			rabbitTemplate.convertAndSend("Hello World " + counter.incrementAndGet());
-		}
-	}
+	
 
 }

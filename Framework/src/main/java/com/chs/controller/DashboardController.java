@@ -16,6 +16,7 @@ import com.chs.entity.ConceptDictionary;
 import com.chs.entity.Topic;
 import com.chs.service.ConceptService;
 import com.chs.service.DissagregationService;
+import com.chs.service.PublishService;
 import com.chs.service.TopicService;
 import com.chs.service.UserService;
 
@@ -27,6 +28,7 @@ public class DashboardController {
 	private ConceptService conceptService;
 	private DissagregationService dissagService;
 	private TopicService topicService;
+	private PublishService publishService;
 	
 	
 	@Autowired(required=true)
@@ -47,6 +49,11 @@ public class DashboardController {
         this.topicService = ts;
     }
 	
+	@Autowired(required=true)
+    @Qualifier(value="publishService")
+    public void setPublishService(PublishService ps){
+        this.publishService = ps;
+    }
 	
     @RequestMapping(value = "/dashboard/newtopic", method = RequestMethod.GET)
     public String newTopic(ModelMap map)
@@ -74,6 +81,8 @@ public class DashboardController {
     	t.setDisagregation(this.dissagService.getDissagregationByName(dissag_name));
     	System.out.println(topicname+","+t.getConcept()+","+t.getDissagreagtion());
     	topicService.addTopic(t);
+    	
+    	publishService.createTopic(topicname.replace(' ', '.'));
         
         return "redirect:";
     }
