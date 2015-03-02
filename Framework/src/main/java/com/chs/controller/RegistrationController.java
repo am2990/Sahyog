@@ -1,8 +1,11 @@
 package com.chs.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chs.entity.Topic;
 import com.chs.entity.UserEntity;
+import com.chs.service.TopicService;
 import com.chs.service.UserService;
  
 
@@ -28,6 +33,14 @@ public class RegistrationController
 {
 	@Autowired
     private UserService userManager;
+	private TopicService topicService;
+	
+	@Autowired(required=true)
+    @Qualifier(value="topicService")
+    public void setTopicService(TopicService ts){
+        this.topicService = ts;
+    }
+	
 	
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String listUsers(ModelMap map)
@@ -54,6 +67,19 @@ public class RegistrationController
         return "redirect:/";
     }
     
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public String UserDashboard( ModelMap map)
+    {
+    	//Producer p = new Producer(user.getFirstname());
+    	//p.publish();
+        //userManager.addUser(user);
+    	List<Topic> tl =  this.topicService.getAllTopics();
+    	System.out.println("Topic Size"+tl.size());
+    	map.addAttribute("topicList", this.topicService.getAllTopics());
+        return "dashboard";
+    }
+    
+    
     @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
     public String loginUser(HttpServletRequest request, 
             @RequestParam(value="username", required=false) String email, 
@@ -67,6 +93,9 @@ public class RegistrationController
     	if(exist){
     		map.addAttribute("user", email);
     		System.out.println(email);
+    		List<Topic> tl =  this.topicService.getAllTopics();
+        	System.out.println("Topic Size"+tl.size());
+        	map.addAttribute("topicList", this.topicService.getAllTopics());
     		return "dashboard";
     	}
         return "redirect:/";

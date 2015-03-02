@@ -79,14 +79,16 @@
 
     <!-- Page Content -->
     <div class="container">
-
+			
+		      
 		   <div class="panel panel-default">
 		    <table class="table table-hover">
 		      <tbody>
+		      <c:forEach items="${topicList}" var="tpl">
 		        <tr>
 		          <td>
-		          <span class="glyphicon glyphicon-chevron-right"></span>
-		            Total Number of Ebola Patients
+		          	<span class="glyphicon glyphicon-chevron-right"></span>		          
+		            ${tpl.topicName}
 		          </td>
 		          <td class="text-right text-nowrap">
 		          	<button class="btn btn-success">Subscribe</button>&nbsp
@@ -96,8 +98,10 @@
 		            </button>&nbsp 
 		          </td>
 		        </tr>
+		        </c:forEach>
 		      </tbody>
 		    </table>
+		    
 		  </div>
 
         <!-- /.row -->

@@ -42,7 +42,7 @@ public class Topic {
 	public String getTopicName() {
 		return topicname;
 	}
-	public void setTopicname(String topicname) {
+	public void setTopicName(String topicname) {
 		this.topicname = topicname;
 	}
 	

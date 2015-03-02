@@ -69,7 +69,7 @@ public class DashboardController {
     {
     	System.out.println(topicname+","+concept_id+","+dissag_name);
     	Topic t = new Topic();
-    	t.setTopicname(topicname);
+    	t.setTopicName(topicname);
     	t.setConcept(conceptService.getConceptByName(concept_id));
     	t.setDisagregation(this.dissagService.getDissagregationByName(dissag_name));
     	System.out.println(topicname+","+t.getConcept()+","+t.getDissagreagtion());
