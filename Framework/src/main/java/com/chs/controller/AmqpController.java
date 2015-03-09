@@ -60,7 +60,8 @@ public class AmqpController {
     {
     	boolean exist = userManager.isUser(email,password);
     	if(exist){
-    		System.out.println(email);
+			System.out.println("Recived Params:username"+email+".Pass"+password+".topicname:"+topicname+".value"+value);
+
     		Topic t = topicService.getTopicByName(topicname);
     		if(t != null) {
     			//TODO	publish the values to the topic

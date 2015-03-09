@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chs.entity.DissagregationDictionary;
 import com.chs.entity.Topic;
 import com.chs.entity.UserEntity;
 
@@ -19,16 +20,7 @@ public class TopicDAOImpl implements TopicDAO{
 	@Autowired
     private SessionFactory sessionFactory;
     
-    
-    
-    public void deleteUser(Integer userId) {
-        UserEntity user = (UserEntity) sessionFactory.getCurrentSession().load(
-                UserEntity.class, userId);
-        if (null != user) {
-            this.sessionFactory.getCurrentSession().delete(user);
-        }
-    }
-	
+    	
 
 	@Override
 	public void addTopic(Topic topic) {
@@ -58,10 +50,12 @@ public class TopicDAOImpl implements TopicDAO{
 		
 		Session session = this.sessionFactory.getCurrentSession();
 	    Criteria cr = session.createCriteria(Topic.class);
-	    cr.add(Restrictions.eq("topic_name", topicname));
+	    System.out.println("have access to topicname:"+topicname);
+	    cr.add(Restrictions.eq("topicname", topicname));
 	    Topic result = (Topic) cr.uniqueResult();
+	    System.out.println("got topic by name:"+result.getTopicName());
 	    return result;
-	    
+	 
 	}
 
 }

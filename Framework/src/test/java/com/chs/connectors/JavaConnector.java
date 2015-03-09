@@ -17,8 +17,8 @@ public class JavaConnector {
  
 		JavaConnector http = new JavaConnector();
  
-		System.out.println("Testing 1 - Send Http GET request");
-		http.sendGet();
+		//System.out.println("Testing 1 - Send Http GET request");
+		//http.sendGet();
  
 		System.out.println("\nTesting 2 - Send Http POST request");
 		http.sendPost();
@@ -61,16 +61,16 @@ public class JavaConnector {
 	// HTTP POST request
 	private void sendPost() throws Exception {
  
-		String url = "https://selfsolve.apple.com/wcResults.do";
+		String url = "http://localhost:8080/chs/publish";
 		URL obj = new URL(url);
-		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
  
 		//add reuqest header
 		con.setRequestMethod("POST");
 		con.setRequestProperty("User-Agent", USER_AGENT);
 		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
  
-		String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
+		String urlParameters = "username=c&pass=9&topicname=swine&value=yeah";
  
 		// Send post request
 		con.setDoOutput(true);
