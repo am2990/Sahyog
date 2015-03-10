@@ -1,21 +1,18 @@
 package com.chs.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.chs.entity.ConceptDictionary;
 import com.chs.entity.Topic;
+import com.chs.entity.UserEntity;
 import com.chs.service.ConceptService;
 import com.chs.service.DissagregationService;
 import com.chs.service.TopicService;
@@ -58,8 +55,8 @@ public class AmqpController {
             @RequestParam(value="topicname", required=true) String topicname,
             @RequestParam(value="value", required=true) String value)
     {
-    	boolean exist = userManager.isUser(email,password);
-    	if(exist){
+    	UserEntity user = userManager.isUser(email,password);
+    	if(user != null){
 			System.out.println("Recived Params:username"+email+".Pass"+password+".topicname:"+topicname+".value"+value);
 
     		Topic t = topicService.getTopicByName(topicname);

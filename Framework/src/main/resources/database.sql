@@ -23,3 +23,12 @@ FOREIGN KEY (concept_Id) REFERENCES Concept_Dictionary(Concept_Id),
 FOREIGN KEY (dissag_Id) REFERENCES Dissagregation_Dictionary(Dissag_Id)
 )
 
+CREATE TABLE Users_Topic
+(
+id int NOT NULL AUTO_INCREMENT,
+user_id INT NOT NULL, 
+topic_id INT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (user_id) REFERENCES users(ID),
+FOREIGN KEY (topic_id) REFERENCES topic(T_Id)
+)

@@ -37,17 +37,33 @@ public class UserDaoImpl implements UserDAO
 	
     
 	@Override
-	public boolean isUser(String user, String pass) {
+	public UserEntity isUser(String user, String pass) {
+		try {
+		    Session session = this.sessionFactory.getCurrentSession();
+		    Criteria cr = session.createCriteria(UserEntity.class);
+		    cr.add(Restrictions.eq("email", user)).add(Restrictions.eq("password", pass));
+		    UserEntity User = (UserEntity) cr.uniqueResult();
+		    return User;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	    	    
+		return null;
+	}
+	@Override
+	public UserEntity getUserById(String userId) {
 		
-	    Session session = this.sessionFactory.getCurrentSession();
-	    Criteria cr = session.createCriteria(UserEntity.class);
-	    cr.add(Restrictions.eq("email", user)).add(Restrictions.eq("password", pass));
-	    List results = cr.list();
-	    
-	    if( results.size() == 1){
-	    	return true;
-	    }
-	    
-	    return false;
+		Integer intuserId = Integer.parseInt(userId);
+		try {
+		    Session session = this.sessionFactory.getCurrentSession();
+		    Criteria cr = session.createCriteria(UserEntity.class);
+		    cr.add(Restrictions.eq("id", intuserId));
+		    UserEntity User = (UserEntity) cr.uniqueResult();
+		    return User;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }

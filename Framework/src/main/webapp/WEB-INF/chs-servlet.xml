@@ -71,6 +71,9 @@
     
     <bean id="topicDAO" class="com.chs.dao.TopicDAOImpl"></bean>
     <bean id="topicService" class="com.chs.service.TopicServiceImpl"></bean>
+
+    <bean id="usersTopicDAO" class="com.chs.dao.UsersTopicDAOImpl"></bean>
+    <bean id="usersTopicService" class="com.chs.service.UsersTopicServiceImpl"></bean>
     
     <bean id="publishService" class="com.chs.service.PublishServiceImpl"/>
     

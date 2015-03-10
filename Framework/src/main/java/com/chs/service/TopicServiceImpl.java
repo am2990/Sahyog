@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chs.dao.TopicDAO;
-import com.chs.dao.UserDAO;
 import com.chs.entity.Topic;
 
 @Service

@@ -37,8 +37,13 @@ public class UserServiceImpl implements UserService
         this.userDAO = userDAO;
     }
     
-    public boolean isUser(String user, String pass){
+    public UserEntity isUser(String user, String pass){
     	return userDAO.isUser(user, pass);
     }
+
+	@Override
+	public UserEntity getUserById(String userId) {
+    	return userDAO.getUserById(userId);
+	}
     
 }

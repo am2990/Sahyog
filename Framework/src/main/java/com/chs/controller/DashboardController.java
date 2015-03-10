@@ -6,19 +6,24 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.chs.entity.ConceptDictionary;
 import com.chs.entity.Topic;
+import com.chs.entity.UserEntity;
+import com.chs.entity.UsersTopic;
 import com.chs.service.ConceptService;
 import com.chs.service.DissagregationService;
 import com.chs.service.PublishService;
 import com.chs.service.TopicService;
 import com.chs.service.UserService;
+import com.chs.service.UsersTopicService;
 
 @Controller
 public class DashboardController {
@@ -29,6 +34,7 @@ public class DashboardController {
 	private DissagregationService dissagService;
 	private TopicService topicService;
 	private PublishService publishService;
+	private UsersTopicService userTopicService; 
 	
 	
 	@Autowired(required=true)
@@ -53,6 +59,12 @@ public class DashboardController {
     @Qualifier(value="publishService")
     public void setPublishService(PublishService ps){
         this.publishService = ps;
+    }
+	
+	@Autowired(required=true)
+    @Qualifier(value="usersTopicService")
+    public void setUsersTopicService(UsersTopicService uts){
+        this.userTopicService = uts;
     }
 	
     @RequestMapping(value = "/dashboard/newtopic", method = RequestMethod.GET)
@@ -87,5 +99,26 @@ public class DashboardController {
         return "redirect:";
     }
     
+    @RequestMapping(value = "/dashboard/subscribe", method = RequestMethod.GET, params = {"topicName" , "User"})
+    @ResponseStatus(value = HttpStatus.OK) 
+    public void topicSubscribe(@RequestParam(value = "topicName") String topicName,
+    						   @RequestParam(value = "User") String userId,
+    						   ModelMap map)
+    {
+    	System.out.println("got the topicname-"+topicName);
+    	UserEntity user = userManager.getUserById(userId);
+    	System.out.println("got the user-"+user.getFirstname());
+    	
+    	UsersTopic ut = new UsersTopic();
+    	ut.setTopic(topicService.getTopicByName(topicName));
+    	ut.setUser(user);
+    	userTopicService.save(ut);
+//    	List<ConceptDictionary> cd = conceptService.getAllConcepts();
+//    	Topic topic = null;
+//        map.addAttribute("conceptList", cd);
+//        map.addAttribute("dissagList", dissagService.getAllDissagregations());
+//        map.addAttribute("topic", topic);
+        //return "sexy success 1";
+    }
     
 }

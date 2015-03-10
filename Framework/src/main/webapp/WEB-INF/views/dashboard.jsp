@@ -2,7 +2,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +27,30 @@
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
     </style>
+    
+    <script type="text/javascript">
+	    $(document).ready(function() {
+	        $('.subscribe').click(function() {
+	            var val = $(this).attr("value");
+	            var button = $(this);
+	            var user = $('.user').attr("value");
+	            $.ajax({
+	                url : '/chs/dashboard/subscribe?topicName='+val,
+	                type : "GET",
+	                data :{
+	                	"User" : user
+	                },
+	                success : function(data) {
+	                    //$('#result').html(data);
+	                    button.text(" Done !!!")
+	            		button.toggleClass("glyphicon glyphicon-ok")
+	                }
+	            })
+	       
+	        });
+	    });
+	</script>
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,6 +63,10 @@
 
 <body>
 
+	<!-- Logged In User Info-->
+	
+	<input type="hidden" class="user" value="${user.id}">
+	
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -91,7 +118,7 @@
 		            ${tpl.topicName}
 		          </td>
 		          <td class="text-right text-nowrap">
-		          	<button class="btn btn-success">Subscribe</button>&nbsp
+		          	<button class="btn btn-success subscribe" value="${tpl.topicName}">Subscribe</button>&nbsp
 		            <button class="btn btn-warning">Edit</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default">
 		            	<span class="glyphicon glyphicon-trash"></span>
@@ -110,4 +137,7 @@
     <!-- /.container -->
 </body>
 
+
 </html>
+
+

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chs.entity.ConceptDictionary;
-import com.chs.entity.UserEntity;
 
 @Transactional 
 @Repository
