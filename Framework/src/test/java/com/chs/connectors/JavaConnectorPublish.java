@@ -9,13 +9,13 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
  
-public class JavaConnector {
+public class JavaConnectorPublish {
  
 	private final String USER_AGENT = "Mozilla/5.0";
  
 	public static void main(String[] args) throws Exception {
  
-		JavaConnector http = new JavaConnector();
+		JavaConnectorPublish http = new JavaConnectorPublish();
  
 		//System.out.println("Testing 1 - Send Http GET request");
 		//http.sendGet();

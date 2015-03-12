@@ -28,8 +28,18 @@ public class PublishServiceImpl implements PublishService{
 	@Override
 	public boolean publishData(String topicname, String data) {
 		
-		
-		return false;
+		System.out.println("inside Publish Data:" + topicname +"and data:"+data);
+		try {
+			applicationContext = new AnnotationConfigApplicationContext(ProducerConfiguration.class);
+			ProducerConfiguration producerConfig = (ProducerConfiguration)applicationContext.getBean(ProducerConfiguration.class);
+			producerConfig.setQueueName(topicname);
+			producerConfig.sendMessage(data);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }

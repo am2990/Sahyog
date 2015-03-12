@@ -15,8 +15,10 @@ import com.chs.entity.Topic;
 import com.chs.entity.UserEntity;
 import com.chs.service.ConceptService;
 import com.chs.service.DissagregationService;
+import com.chs.service.PublishService;
 import com.chs.service.TopicService;
 import com.chs.service.UserService;
+import com.chs.service.UsersTopicService;
 
 @Controller
 public class AmqpController {
@@ -26,6 +28,8 @@ public class AmqpController {
 	private ConceptService conceptService;
 	private DissagregationService dissagService;
 	private TopicService topicService;
+	private UsersTopicService usersTopicService;
+	private PublishService publishService;
 	
 	
 	@Autowired(required=true)
@@ -46,6 +50,19 @@ public class AmqpController {
         this.topicService = ts;
     }
 	
+	@Autowired(required=true)
+    @Qualifier(value="publishService")
+    public void setUsersTopicService(PublishService ps){
+        this.publishService = ps;
+    }
+	
+	@Autowired(required=true)
+    @Qualifier(value="usersTopicService")
+    public void setUsersTopicService(UsersTopicService uts){
+        this.usersTopicService = uts;
+    }
+	
+	
 	//TODO: The function will receive the data to be published as a post request. Data will have topicname, values apart from username and password.
     @RequestMapping(value = "/publish", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK) 
@@ -53,15 +70,17 @@ public class AmqpController {
             @RequestParam(value="username", required=true) String email, 
             @RequestParam(value="pass", required=true) String password,
             @RequestParam(value="topicname", required=true) String topicname,
-            @RequestParam(value="value", required=true) String value)
+            @RequestParam(value="value", required=true) String data)
     {
     	UserEntity user = userManager.isUser(email,password);
     	if(user != null){
-			System.out.println("Recived Params:username"+email+".Pass"+password+".topicname:"+topicname+".value"+value);
+			System.out.println("Recived Params:username"+email+".Pass"+password+".topicname:"+topicname+".value"+data);
 
     		Topic t = topicService.getTopicByName(topicname);
     		if(t != null) {
     			//TODO	publish the values to the topic
+    			publishService.publishData(topicname, data);
+    			
     		}
     	}
 

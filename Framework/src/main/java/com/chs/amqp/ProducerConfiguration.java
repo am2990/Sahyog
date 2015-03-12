@@ -47,8 +47,7 @@ public class ProducerConfiguration{
 	public boolean sendMessage(String data) {
 		//TODO add bean dependency on PublishData instead of direct data
 		rabbitTemplate();
-		System.out.println("sending to queue:");
-		template.convertAndSend("Hello World " + data);
+		template.convertAndSend(data);
 		return true;
 	}
 
