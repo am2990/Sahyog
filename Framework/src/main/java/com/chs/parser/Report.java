@@ -9,6 +9,10 @@ class Report{
   int dataValue;
 
  
+  public String getTopicName() {
+	  return this.concept;
+  }
+  
   @Override
   public String toString() {
     return concept+" "+dissagregation+"("+timestamp+")"+frequency+":"+dataValue;
