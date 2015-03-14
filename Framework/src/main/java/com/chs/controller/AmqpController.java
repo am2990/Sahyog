@@ -78,7 +78,7 @@ public class AmqpController {
 
     		Topic t = topicService.getTopicByName(topicname);
     		if(t != null) {
-    			//TODO	publish the values to the topic
+    			
     			publishService.publishData(topicname, data);
     			
     		}
