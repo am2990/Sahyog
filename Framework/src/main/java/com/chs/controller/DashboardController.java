@@ -121,7 +121,7 @@ public class DashboardController {
 //        map.addAttribute("conceptList", cd);
 //        map.addAttribute("dissagList", dissagService.getAllDissagregations());
 //        map.addAttribute("topic", topic);
-        //return "sexy success 1";
+        
     }
     
     @RequestMapping(value = "/dashboard/unsubscribe/{mappingId}", method = RequestMethod.GET)
@@ -133,4 +133,14 @@ public class DashboardController {
     	userTopicService.deleteMapping(mappingId);
     }
     
+    @RequestMapping(value = "/dashboard/delete/{topicId}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK) 
+    public void deleteTopic(@PathVariable("topicId") Integer topicId)
+    {
+    	System.out.println("Deleting Topic with TopicId-"+topicId);
+    	
+    	topicService.deleteTopic(topicId);
+    	
+    }
+
 }

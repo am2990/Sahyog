@@ -62,6 +62,25 @@
 	            })
 	       
 	        });
+	        
+	        $('.delete').click(function() {
+	            var val = $(this).attr("value");
+	            var button = $(this);
+	            $.ajax({
+	                url : '/chs/dashboard/delete/'+val,
+	                type : "GET",
+	                success : function(data) {
+	                    //$('#result').html(data);
+	                    button.text("  Done !!!")
+	            		button.toggleClass("glyphicon glyphicon-ok")
+	            		button.attr('disabled','disabled');
+	            	    //location.reload(true);
+
+	                }
+	            })
+	       
+	        });
+	        
 	    });
 	</script>
     
@@ -133,8 +152,8 @@
 		          </td>
 		          <td class="text-right text-nowrap">
 		          	<button class="btn btn-success subscribe" value="${tpl.topicName}">Subscribe</button>&nbsp
-		            <button class="btn btn-warning">Edit</button>&nbsp
-		            <button type="button" class="btn btn-danger btn-default">
+		            <button class="btn btn-warning" value="${tpl.topicName}">Edit</button>&nbsp
+		            <button type="button" class="btn btn-danger btn-default delete" value="${tpl.id}">
 		            	<span class="glyphicon glyphicon-trash"></span>
 		            </button>&nbsp 
 		          </td>

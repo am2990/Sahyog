@@ -71,6 +71,7 @@ public class RegistrationController
         return "redirect:/";
     }
     
+    //TODO Handle get so that user information is available maybe through session
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String UserDashboard( ModelMap map)
     {

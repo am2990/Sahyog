@@ -25,11 +25,11 @@ public class Topic {
     @Column(name="topic_name")
     private String topicname;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="Concept_Id")
     private ConceptDictionary Concept_Id;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="Dissag_Id")
     private DissagregationDictionary Dissag_Id;
 
