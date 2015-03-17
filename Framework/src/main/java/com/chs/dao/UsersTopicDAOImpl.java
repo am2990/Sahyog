@@ -21,8 +21,9 @@ public class UsersTopicDAOImpl implements UsersTopicDAO {
 	private SessionFactory sessionFactory;
 
 	public void save(UsersTopic userstopic) {
+		//TODO make user same user topic are only updated and not added as duplicate entries
 		System.out.println("inside save userstopic");
-        this.sessionFactory.getCurrentSession().save(userstopic);
+        this.sessionFactory.getCurrentSession().saveOrUpdate(userstopic);
 		
 	}
 
@@ -44,5 +45,13 @@ public class UsersTopicDAOImpl implements UsersTopicDAO {
 	    return usersTopicList;
 	}
 
+	
+	public void deleteMapping(Integer mappingId) {
+        UsersTopic ut = (UsersTopic) sessionFactory.getCurrentSession().load(
+                UsersTopic.class, mappingId);
+        if (null != ut) {
+            this.sessionFactory.getCurrentSession().delete(ut);
+        }
+    }
 
 }

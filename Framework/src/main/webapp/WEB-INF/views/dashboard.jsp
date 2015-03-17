@@ -48,6 +48,20 @@
 	            })
 	       
 	        });
+	        $('.unsubscribe').click(function() {
+	            var val = $(this).attr("value");
+	            var button = $(this);
+	            $.ajax({
+	                url : '/chs/dashboard/unsubscribe/'+val,
+	                type : "GET",
+	                success : function(data) {
+	                    //$('#result').html(data);
+	                    button.text("Done !!!")
+	            		button.toggleClass("glyphicon glyphicon-ok")
+	                }
+	            })
+	       
+	        });
 	    });
 	</script>
     
@@ -119,6 +133,21 @@
 		          </td>
 		          <td class="text-right text-nowrap">
 		          	<button class="btn btn-success subscribe" value="${tpl.topicName}">Subscribe</button>&nbsp
+		            <button class="btn btn-warning">Edit</button>&nbsp
+		            <button type="button" class="btn btn-danger btn-default">
+		            	<span class="glyphicon glyphicon-trash"></span>
+		            </button>&nbsp 
+		          </td>
+		        </tr>
+		        </c:forEach>
+		        <c:forEach items="${subscribed}" var="stpl">
+		        <tr>
+		          <td>
+		          	<span class="glyphicon glyphicon-chevron-right"></span>		          
+		            ${stpl.topic.topicName}
+		          </td>
+		          <td class="text-right text-nowrap">
+		          	<button class="btn btn-success unsubscribe" value="${stpl.id}">Unsubscribe</button>&nbsp
 		            <button class="btn btn-warning">Edit</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default">
 		            	<span class="glyphicon glyphicon-trash"></span>

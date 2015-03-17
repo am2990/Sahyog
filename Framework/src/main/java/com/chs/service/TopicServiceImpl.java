@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chs.dao.TopicDAO;
 import com.chs.entity.Topic;
+import com.chs.entity.UserEntity;
 
 @Service
 public class TopicServiceImpl implements TopicService{
@@ -33,5 +34,6 @@ public class TopicServiceImpl implements TopicService{
 	public Topic getTopicByName(String topicname) {
 		return topicDAO.getTopicByName(topicname);
 	}
+
 
 }

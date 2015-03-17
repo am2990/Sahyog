@@ -61,4 +61,21 @@ public class Topic {
     public DissagregationDictionary getDissagreagtion(){
     	return this.Dissag_Id;
     }
+    
+    public boolean equals(Object o) {
+    	
+//    	System.out.println("comparing in side equals");
+    	if (!(o instanceof Topic)) {
+    	    return false;
+    	}
+    	Topic other = (Topic) o;
+//    	System.out.println("details----"+this.topicname+"=="+other.getTopicName());
+    	if(this.topicname.equals(other.getTopicName())) {
+//    		System.out.println("retunrign true");
+    		return true;
+    	}
+    	return false;
+    }
+    
+    
 }

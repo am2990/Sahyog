@@ -10,4 +10,5 @@ public interface UsersTopicDAO {
 	public void save(UsersTopic usertopic);
     public List<UsersTopic> getAllMappings();
     public List<UsersTopic> getUserMappings(UserEntity user);
+	public void deleteMapping(Integer mappingId);
 }

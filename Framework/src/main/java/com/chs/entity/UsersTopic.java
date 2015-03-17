@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 
 
 @Entity
@@ -22,11 +24,11 @@ public class UsersTopic {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="user_id")
     private UserEntity user;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="topic_id")
     private Topic topic;
     
@@ -52,4 +54,7 @@ public class UsersTopic {
     	return this.topic;
     }
  
+    public String toString() {
+    	return id+"|"+user.getEmail()+"|"+topic.getTopicName();
+    }
 }

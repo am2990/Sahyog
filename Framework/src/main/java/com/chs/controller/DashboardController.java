@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,6 +100,8 @@ public class DashboardController {
         return "redirect:";
     }
     
+    //TODO Auto Refresh Page every subscribe and unsubscribe option 
+    
     @RequestMapping(value = "/dashboard/subscribe", method = RequestMethod.GET, params = {"topicName" , "User"})
     @ResponseStatus(value = HttpStatus.OK) 
     public void topicSubscribe(@RequestParam(value = "topicName") String topicName,
@@ -119,6 +122,15 @@ public class DashboardController {
 //        map.addAttribute("dissagList", dissagService.getAllDissagregations());
 //        map.addAttribute("topic", topic);
         //return "sexy success 1";
+    }
+    
+    @RequestMapping(value = "/dashboard/unsubscribe/{mappingId}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK) 
+    public void unSubscribe(@PathVariable("mappingId") Integer mappingId)
+    {
+    	System.out.println("have to unsubscribe user topic mappingId-"+mappingId);
+    	
+    	userTopicService.deleteMapping(mappingId);
     }
     
 }

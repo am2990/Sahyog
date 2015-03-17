@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chs.entity.Topic;
 import com.chs.entity.UserEntity;
+import com.chs.entity.UsersTopic;
 import com.chs.service.TopicService;
 import com.chs.service.UserService;
+import com.chs.service.UsersTopicService;
  
 
 
@@ -29,11 +31,18 @@ public class RegistrationController
 	@Autowired
     private UserService userManager;
 	private TopicService topicService;
+	private UsersTopicService userTopicService;
 	
 	@Autowired(required=true)
     @Qualifier(value="topicService")
     public void setTopicService(TopicService ts){
         this.topicService = ts;
+    }
+	
+	@Autowired(required=true)
+    @Qualifier(value="usersTopicService")
+    public void setUsersTopicService(UsersTopicService uts){
+        this.userTopicService = uts;
     }
 	
 	
@@ -87,10 +96,17 @@ public class RegistrationController
     	UserEntity User = userManager.isUser(email,password);
     	if(User != null){
     		map.addAttribute("user", User);
-    		System.out.println(email);
+    		System.out.println("Logging in User-" +email);
     		List<Topic> tl =  this.topicService.getAllTopics();
-        	System.out.println("Topic Size"+tl.size());
-        	map.addAttribute("topicList", this.topicService.getAllTopics());
+        	List<UsersTopic> utl = this.userTopicService.getUserMappings(User);
+//        	System.out.println("initial topic list size and utl size-"+tl.size()+"|utl-"+utl.size());
+        	for(UsersTopic t : utl) {
+        		System.out.println("removing topic:"+t.toString());
+        		tl.remove(t.getTopic());
+        	}
+//        	System.out.println("final topic list size-"+tl.size());
+        	map.addAttribute("topicList", tl);
+        	map.addAttribute("subscribed", utl);
     		return "dashboard";
     	}
         return "redirect:/";

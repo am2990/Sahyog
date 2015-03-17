@@ -30,4 +30,11 @@ public class UsersTopicServiceImpl implements UsersTopicService{
 		return userTopicDao.getUserMappings(user);
 	}
 
+	@Override
+	public void deleteMapping(Integer mappingId) {
+		
+		userTopicDao.deleteMapping(mappingId);
+		
+	}
+
 }
