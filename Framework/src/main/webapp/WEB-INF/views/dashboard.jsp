@@ -80,7 +80,14 @@
 	            })
 	       
 	        });
-	        
+	        $('.edit').click(function() {
+	            var val = $(this).attr("value");
+	            var button = $(this);
+
+	           	window.location.href = '/chs/dashboard/edit/'+val;
+
+	       
+	        });
 	    });
 	</script>
     
@@ -152,7 +159,7 @@
 		          </td>
 		          <td class="text-right text-nowrap">
 		          	<button class="btn btn-success subscribe" value="${tpl.topicName}">Subscribe</button>&nbsp
-		            <button class="btn btn-warning" value="${tpl.topicName}">Edit</button>&nbsp
+		            <button class="btn btn-warning edit" value="${tpl.id}">Edit</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default delete" value="${tpl.id}">
 		            	<span class="glyphicon glyphicon-trash"></span>
 		            </button>&nbsp 
@@ -167,7 +174,7 @@
 		          </td>
 		          <td class="text-right text-nowrap">
 		          	<button class="btn btn-success unsubscribe" value="${stpl.id}">Unsubscribe</button>&nbsp
-		            <button class="btn btn-warning">Edit</button>&nbsp
+		            <button class="btn btn-warning edit">Edit</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default">
 		            	<span class="glyphicon glyphicon-trash"></span>
 		            </button>&nbsp 

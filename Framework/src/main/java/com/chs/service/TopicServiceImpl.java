@@ -16,8 +16,8 @@ public class TopicServiceImpl implements TopicService{
     private TopicDAO topicDAO;
     
 	@Override
-	public void addTopic(Topic topic) {
-		topicDAO.addTopic(topic);
+	public void saveTopic(Topic topic) {
+		topicDAO.saveTopic(topic);
 	}
 
 	@Override
@@ -33,6 +33,11 @@ public class TopicServiceImpl implements TopicService{
 	@Override
 	public Topic getTopicByName(String topicname) {
 		return topicDAO.getTopicByName(topicname);
+	}
+
+	@Override
+	public Topic getTopicById(Integer topicId) {
+		return topicDAO.getTopicById(topicId);
 	}
 
 

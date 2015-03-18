@@ -7,11 +7,11 @@ import com.chs.entity.UserEntity;
 
 public interface TopicService {
 	
-	public void addTopic(Topic topic);
+	public void saveTopic(Topic topic);
 	
 	public List<Topic> getAllTopics();
 	public Topic getTopicByName(String topicname);
-		
+	public Topic getTopicById(Integer topicId);
 	public void deleteTopic(Integer topicId);
 		
 }

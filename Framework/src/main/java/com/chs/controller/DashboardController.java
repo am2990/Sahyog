@@ -3,17 +3,20 @@ package com.chs.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.chs.entity.ConceptDictionary;
 import com.chs.entity.Topic;
@@ -91,14 +94,44 @@ public class DashboardController {
     	Topic t = new Topic();
     	t.setTopicName(topicname);
     	t.setConcept(conceptService.getConceptByName(concept_id));
-    	t.setDisagregation(this.dissagService.getDissagregationByName(dissag_name));
+    	t.setDisagregation(dissagService.getDissagregationByName(dissag_name));
     	System.out.println(topicname+","+t.getConcept()+","+t.getDissagreagtion());
-    	topicService.addTopic(t);
-    	
+    	topicService.saveTopic(t);
     	publishService.createTopic(topicname.replace(' ', '.'));
         
         return "redirect:";
     }
+    
+    @RequestMapping(value = "/dashboard/edit/{topicId}", method = RequestMethod.GET)
+    public String editTopic(@PathVariable("topicId") Integer topicId,
+    						ModelMap map)
+    {
+    	System.out.println("received a request for edit page with topic id;"+ topicId);
+    	Topic topic = topicService.getTopicById(topicId);
+        map.addAttribute("topic", topic);
+        map.addAttribute("conceptList", conceptService.getAllConcepts());
+        map.addAttribute("dissagList", dissagService.getAllDissagregations());
+        return "edit_topic";
+    }
+    
+    @RequestMapping(value = "/dashboard/edit/{topicId}", method = RequestMethod.POST)
+    public ModelAndView updateTopic(@PathVariable("topicId") Integer topicId,
+    		@RequestParam(value="topicName", required=false) String topicname,
+            @RequestParam(value="concept", required=false) String concept_id, 
+            @RequestParam(value="dissagreagtion", required=false) String dissag,
+            HttpServletResponse response, Model model)
+    {
+    	
+    	Topic topic = topicService.getTopicById(topicId);
+    	topic.setTopicName(topicname);
+    	topic.setConcept(conceptService.getConceptByName(concept_id));
+    	topic.setDisagregation(dissagService.getDissagregationByName(dissag));
+    	System.out.println("save edited page with topicname;"+ topic.getConcept()+":"+topic.getDissagreagtion());
+    	topicService.saveTopic(topic);
+    	return new ModelAndView("dashboard", "model", model);
+    }
+    
+    
     
     //TODO Auto Refresh Page every subscribe and unsubscribe option 
     
@@ -132,6 +165,7 @@ public class DashboardController {
     	
     	userTopicService.deleteMapping(mappingId);
     }
+    
     
     @RequestMapping(value = "/dashboard/delete/{topicId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK) 

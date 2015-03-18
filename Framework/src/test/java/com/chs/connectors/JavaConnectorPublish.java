@@ -61,7 +61,8 @@ public class JavaConnectorPublish {
 	// HTTP POST request
 	private void sendPost() throws Exception {
  
-		String url = "http://localhost:8080/chs/publish";
+//		String url = "http://localhost:8080/chs/publish";
+		String url = "http://localhost:8080/chs/dashboard/edit/23";
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
  
@@ -70,8 +71,9 @@ public class JavaConnectorPublish {
 		con.setRequestProperty("User-Agent", USER_AGENT);
 		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
  
-		String urlParameters = "username=c&pass=9&topicname=swine&value=yeah";
- 
+//		String urlParameters = "username=c&pass=9&topicname=swine&value=yeah";
+		String urlParameters = "topicname=swine&concept=Malaria&dissagreagtion=Male";
+		
 		// Send post request
 		con.setDoOutput(true);
 		DataOutputStream wr = new DataOutputStream(con.getOutputStream());

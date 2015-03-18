@@ -21,9 +21,9 @@ public class TopicDAOImpl implements TopicDAO{
     	
 
 	@Override
-	public void addTopic(Topic topic) {
+	public void saveTopic(Topic topic) {
 		
-		this.sessionFactory.getCurrentSession().save(topic);
+		this.sessionFactory.getCurrentSession().saveOrUpdate(topic);
 		
 	}
 
@@ -54,6 +54,17 @@ public class TopicDAOImpl implements TopicDAO{
 	    System.out.println("got topic by name:"+result.getTopicName());
 	    return result;
 	 
+	}
+
+	@Override
+	public Topic getTopicById(Integer topicId) {
+		Session session = this.sessionFactory.getCurrentSession();
+	    Criteria cr = session.createCriteria(Topic.class);
+//	    System.out.println("have access to topicname:"+topicname);
+	    cr.add(Restrictions.eq("id", topicId));
+	    Topic result = (Topic) cr.uniqueResult();
+	    System.out.println("got topic by id:"+result.getTopicName());
+	    return result;
 	}
 
 }
