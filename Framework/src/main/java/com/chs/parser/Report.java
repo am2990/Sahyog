@@ -13,8 +13,14 @@ class Report{
 	  return this.concept;
   }
   
+
+  public void setTopicName(String topicname) {
+	  this.concept = topicname;
+  }
+  
   @Override
   public String toString() {
     return concept+" "+dissagregation+"("+timestamp+")"+frequency+":"+dataValue;
   }
+  
 }

@@ -8,13 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 
 @Entity
 @Table(name="Users_Topic")
+@XmlRootElement(name = "topic")  
 public class UsersTopic {
 	
  
@@ -22,6 +23,7 @@ public class UsersTopic {
     @Id
     @Column(name="id")
     @GeneratedValue
+    @XmlElement
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -30,6 +32,7 @@ public class UsersTopic {
     
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="topic_id")
+    @XmlElement
     private Topic topic;
     
 

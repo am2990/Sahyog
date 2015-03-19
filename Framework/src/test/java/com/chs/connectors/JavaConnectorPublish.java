@@ -17,18 +17,18 @@ public class JavaConnectorPublish {
  
 		JavaConnectorPublish http = new JavaConnectorPublish();
  
-		//System.out.println("Testing 1 - Send Http GET request");
-		//http.sendGet();
+		System.out.println("Testing 1 - Send Http GET request");
+		http.sendGet();
  
 		System.out.println("\nTesting 2 - Send Http POST request");
-		http.sendPost();
+//		http.sendPost();
  
 	}
  
 	// HTTP GET request
 	private void sendGet() throws Exception {
  
-		String url = "http://www.google.com/search?q=mkyong";
+		String url = "http://localhost:8080/chs/api/topics?username=c&pass=9";
  
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();

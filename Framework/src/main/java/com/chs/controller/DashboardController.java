@@ -115,7 +115,7 @@ public class DashboardController {
     }
     
     @RequestMapping(value = "/dashboard/edit/{topicId}", method = RequestMethod.POST)
-    public ModelAndView updateTopic(@PathVariable("topicId") Integer topicId,
+    public String updateTopic(@PathVariable("topicId") Integer topicId,
     		@RequestParam(value="topicName", required=false) String topicname,
             @RequestParam(value="concept", required=false) String concept_id, 
             @RequestParam(value="dissagreagtion", required=false) String dissag,
@@ -126,9 +126,14 @@ public class DashboardController {
     	topic.setTopicName(topicname);
     	topic.setConcept(conceptService.getConceptByName(concept_id));
     	topic.setDisagregation(dissagService.getDissagregationByName(dissag));
-    	System.out.println("save edited page with topicname;"+ topic.getConcept()+":"+topic.getDissagreagtion());
     	topicService.saveTopic(topic);
-    	return new ModelAndView("dashboard", "model", model);
+    	System.out.println("Save edited page with topicname;"+ topic.getConcept()+":"+topic.getDissagreagtion());
+    	
+    	model.addAttribute("user", userManager.getUserById("6"));
+    	
+    	
+//    	return new ModelAndView("dashboard", "model", model);
+    	return "redirect:/dashboard";
     }
     
     

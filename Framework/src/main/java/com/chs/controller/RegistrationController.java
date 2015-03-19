@@ -71,7 +71,7 @@ public class RegistrationController
         return "redirect:/";
     }
     
-    //TODO Handle get so that user information is available maybe through session
+    //TODO (Will have to use Spring Security for User Login)
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String UserDashboard( ModelMap map)
     {
