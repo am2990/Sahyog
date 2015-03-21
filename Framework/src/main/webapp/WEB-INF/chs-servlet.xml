@@ -75,6 +75,9 @@
     <bean id="usersTopicDAO" class="com.chs.dao.impl.UsersTopicDAOImpl"></bean>
     <bean id="usersTopicService" class="com.chs.service.impl.UsersTopicServiceImpl"></bean>
     
+    <bean id="usersSubscribeDAO" class="com.chs.dao.impl.UsersSubscribeDAOImpl"></bean>
+    <bean id="usersSubscribeService" class="com.chs.service.impl.UsersSubscribeServiceImpl"></bean>
+    
     <bean id="publishService" class="com.chs.service.impl.PublishServiceImpl"/>
     
     
