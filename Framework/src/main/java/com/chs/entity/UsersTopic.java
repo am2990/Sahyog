@@ -26,6 +26,9 @@ public class UsersTopic {
     @XmlElement
     private Integer id;
 
+    @Column(name="user_role")
+    private String userRole;
+    
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="user_id")
     private UserEntity user;
@@ -42,6 +45,15 @@ public class UsersTopic {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public String getUserRole() {
+		return this.userRole;
+	}
+	
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+	
 	public UserEntity getUser() {
 		return user;
 	}

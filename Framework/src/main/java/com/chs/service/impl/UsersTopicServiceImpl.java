@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chs.dao.UsersTopicDAO;
+import com.chs.entity.Topic;
 import com.chs.entity.UserEntity;
 import com.chs.entity.UsersTopic;
 import com.chs.service.UsersTopicService;
@@ -36,6 +37,11 @@ public class UsersTopicServiceImpl implements UsersTopicService{
 		
 		userTopicDao.deleteMapping(mappingId);
 		
+	}
+
+	@Override
+	public List<UsersTopic> getUserTopicMappings(UserEntity user, Topic topic) {
+		return userTopicDao.getUserTopicMapping(user, topic);
 	}
 
 }

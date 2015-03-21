@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chs.dao.UsersTopicDAO;
+import com.chs.entity.Topic;
 import com.chs.entity.UserEntity;
 import com.chs.entity.UsersTopic;
 
@@ -46,6 +47,20 @@ public class UsersTopicDAOImpl implements UsersTopicDAO {
 	    return usersTopicList;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UsersTopic> getUserTopicMapping(UserEntity user, Topic topic) {
+	    
+		Session session = this.sessionFactory.getCurrentSession();
+	    Criteria cr = session.createCriteria(UsersTopic.class);
+	    cr.add(Restrictions.eq("user", user)).add(Restrictions.eq("topic", topic));
+	    List<UsersTopic> usersTopicList = cr.list();
+	    
+	    return usersTopicList;
+	}
+
+	
+	
 	
 	public void deleteMapping(Integer mappingId) {
         UsersTopic ut = (UsersTopic) sessionFactory.getCurrentSession().load(

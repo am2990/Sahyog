@@ -139,20 +139,30 @@ public class DashboardController {
     
     //TODO Auto Refresh Page every subscribe and unsubscribe option 
     
-    @RequestMapping(value = "/dashboard/subscribe", method = RequestMethod.GET, params = {"topicName" , "User"})
+    @RequestMapping(value = "/dashboard/modifyrole", method = RequestMethod.GET, params = {"topicName" , "User","Role"})
     @ResponseStatus(value = HttpStatus.OK) 
     public void topicSubscribe(@RequestParam(value = "topicName") String topicName,
     						   @RequestParam(value = "User") String userId,
+    						   @RequestParam(value = "Role") String userRole,
     						   ModelMap map)
     {
     	System.out.println("got the topicname-"+topicName);
     	UserEntity user = userManager.getUserById(userId);
     	System.out.println("got the user-"+user.getFirstname());
+    	Topic topic = topicService.getTopicByName(topicName);
     	
-    	UsersTopic ut = new UsersTopic();
-    	ut.setTopic(topicService.getTopicByName(topicName));
-    	ut.setUser(user);
-    	userTopicService.save(ut);
+    	List<UsersTopic> utl = userTopicService.getUserTopicMappings(user, topic);
+    	if(utl.size() == 0) {
+	    	UsersTopic ut = new UsersTopic();
+	    	ut.setTopic(topic);
+	    	ut.setUser(user);
+	    	ut.setUserRole(userRole);
+	    	userTopicService.save(ut);
+    	}
+    	else {
+    		utl.get(0).setUserRole(userRole);
+    		userTopicService.save(utl.get(0));
+    	}
 //    	List<ConceptDictionary> cd = conceptService.getAllConcepts();
 //    	Topic topic = null;
 //        map.addAttribute("conceptList", cd);

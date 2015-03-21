@@ -102,7 +102,7 @@
 					button.text(role);
 					var user = $('.user').attr("value");
 					$.ajax({
-	                url : '/chs/dashboard/changerole?topicName='+topicname,
+	                url : '/chs/dashboard/modifyrole?topicName='+topicname,
 	                type : "GET",
 	                data :{
 	                	"User" : user,

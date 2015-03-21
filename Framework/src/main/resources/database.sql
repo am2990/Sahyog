@@ -28,10 +28,12 @@ CREATE TABLE Users_Topic
 id int NOT NULL AUTO_INCREMENT,
 user_id INT NOT NULL, 
 topic_id INT NOT NULL,
+user_role varchar(255) NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (user_id) REFERENCES users(ID),
 FOREIGN KEY (topic_id) REFERENCES topic(T_Id)
 )
+
 
 CREATE TABLE Users_Subscribe
 (
