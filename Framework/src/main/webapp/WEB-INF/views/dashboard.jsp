@@ -99,7 +99,7 @@
 			$('.change-role').click(function() {
 					var role = $('.selectpicker').val();
 					//TODO : change button value on success
-					button.text(role);
+					//button.text(role);
 					var user = $('.user').attr("value");
 					$.ajax({
 	                url : '/chs/dashboard/modifyrole?topicName='+topicname,
@@ -110,8 +110,9 @@
 	                },
 	                success : function(data) {
 	                    //$('#result').html(data);
+	                    $('#myModal').modal('hide'); 
 	                    button.text(role)
-	            		button.toggleClass("glyphicon glyphicon-ok")
+	            		//button.toggleClass("glyphicon glyphicon-ok")
 						
 	                }
 					
@@ -214,8 +215,8 @@
 		            ${tpl.topicName}
 		          </td>
 		          <td class="text-right text-nowrap">
-		          	<button class="btn btn-success modalButton" value="${tpl.topicName}">Subscribe</button>&nbsp
-		            <button class="btn btn-warning edit" value="${tpl.id}">Edit</button>&nbsp
+		          	<button class="btn btn-success modalButton" value="${tpl.topicName}">Add Role</button>&nbsp
+		            <button class="btn btn-warning edit" value="${tpl.id}">Edit Topic</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default delete" value="${tpl.id}">
 		            	<span class="glyphicon glyphicon-trash"></span>
 		            </button>&nbsp 
@@ -229,8 +230,8 @@
 		            ${stpl.topic.topicName}
 		          </td>
 		          <td class="text-right text-nowrap">
-		          	<button class="btn btn-success modalButton" value="${stpl.id}">Unsubscribe</button>&nbsp
-		            <button class="btn btn-warning edit">Edit</button>&nbsp
+		          	<button class="btn btn-success modalButton" value="${stpl.topic.topicName}">Change Role</button>&nbsp
+		            <button class="btn btn-warning edit">Edit Topic</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default">
 		            	<span class="glyphicon glyphicon-trash"></span>
 		            </button>&nbsp 
