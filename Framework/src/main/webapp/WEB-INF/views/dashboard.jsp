@@ -88,6 +88,37 @@
 
 	       
 	        });
+	        
+	        $('.modalButton').click(function() {
+	            $('#myModal').modal('show'); 
+				button = $(this);
+				topicname = button.attr("value")
+				
+	        });
+			
+			$('.change-role').click(function() {
+					var role = $('.selectpicker').val();
+					//TODO : change button value on success
+					button.text(role);
+					var user = $('.user').attr("value");
+					$.ajax({
+	                url : '/chs/dashboard/changerole?topicName='+topicname,
+	                type : "GET",
+	                data :{
+	                	"User" : user,
+	                	"Role" : role
+	                },
+	                success : function(data) {
+	                    //$('#result').html(data);
+	                    button.text(role)
+	            		button.toggleClass("glyphicon glyphicon-ok")
+						
+	                }
+					
+					})
+				
+			});
+	        
 	    });
 	</script>
     
@@ -106,6 +137,31 @@
 	<!-- Logged In User Info-->
 	
 	<input type="hidden" class="user" value="${user.id}">
+	
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <select class="selectpicker">
+    <option value="Publisher">Publisher</option>
+    <option value="Subscriber">Subscriber</option>
+    <option value="Both">Both</option>
+    <option value="None">None</option>
+  </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary change-role">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 	
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -158,7 +214,7 @@
 		            ${tpl.topicName}
 		          </td>
 		          <td class="text-right text-nowrap">
-		          	<button class="btn btn-success subscribe" value="${tpl.topicName}">Subscribe</button>&nbsp
+		          	<button class="btn btn-success modalButton" value="${tpl.topicName}">Subscribe</button>&nbsp
 		            <button class="btn btn-warning edit" value="${tpl.id}">Edit</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default delete" value="${tpl.id}">
 		            	<span class="glyphicon glyphicon-trash"></span>
@@ -166,14 +222,14 @@
 		          </td>
 		        </tr>
 		        </c:forEach>
-		        <c:forEach items="${subscribed}" var="stpl">
+		      <c:forEach items="${subscribed}" var="stpl">
 		        <tr>
 		          <td>
 		          	<span class="glyphicon glyphicon-chevron-right"></span>		          
 		            ${stpl.topic.topicName}
 		          </td>
 		          <td class="text-right text-nowrap">
-		          	<button class="btn btn-success unsubscribe" value="${stpl.id}">Unsubscribe</button>&nbsp
+		          	<button class="btn btn-success modalButton" value="${stpl.id}">Unsubscribe</button>&nbsp
 		            <button class="btn btn-warning edit">Edit</button>&nbsp
 		            <button type="button" class="btn btn-danger btn-default">
 		            	<span class="glyphicon glyphicon-trash"></span>
