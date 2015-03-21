@@ -1,4 +1,4 @@
-package com.chs.service;
+package com.chs.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chs.dao.DissagregationDAO;
 import com.chs.entity.DissagregationDictionary;
+import com.chs.service.DissagregationService;
 
 @Service
 public class DissagregationServiceImpl implements DissagregationService{

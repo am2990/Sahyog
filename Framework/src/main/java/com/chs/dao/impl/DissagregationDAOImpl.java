@@ -1,4 +1,4 @@
-package com.chs.dao;
+package com.chs.dao.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chs.dao.DissagregationDAO;
 import com.chs.entity.DissagregationDictionary;
 
 @Transactional 

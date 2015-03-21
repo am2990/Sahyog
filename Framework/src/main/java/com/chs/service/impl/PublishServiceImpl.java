@@ -1,9 +1,10 @@
-package com.chs.service;
+package com.chs.service.impl;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.chs.amqp.ProducerConfiguration;
+import com.chs.service.PublishService;
 
 public class PublishServiceImpl implements PublishService{
 

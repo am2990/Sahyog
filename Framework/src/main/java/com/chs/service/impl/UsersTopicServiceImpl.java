@@ -1,4 +1,4 @@
-package com.chs.service;
+package com.chs.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.chs.dao.UsersTopicDAO;
 import com.chs.entity.UserEntity;
 import com.chs.entity.UsersTopic;
+import com.chs.service.UsersTopicService;
 
 @Service
 public class UsersTopicServiceImpl implements UsersTopicService{

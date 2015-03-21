@@ -1,4 +1,4 @@
-package com.chs.service;
+package com.chs.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.chs.dao.ConceptDictionaryDAO;
 import com.chs.entity.ConceptDictionary;
+import com.chs.service.ConceptService;
 
 @Service
 public class ConceptServiceImpl implements ConceptService{

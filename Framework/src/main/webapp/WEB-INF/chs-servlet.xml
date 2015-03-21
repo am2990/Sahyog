@@ -60,22 +60,22 @@
         </property>
     </bean>
      
-    <bean id="userDAO" class="com.chs.dao.UserDaoImpl"></bean>
-    <bean id="userService" class="com.chs.service.UserServiceImpl"></bean>
+    <bean id="userDAO" class="com.chs.dao.impl.UserDaoImpl"></bean>
+    <bean id="userService" class="com.chs.service.impl.UserServiceImpl"></bean>
   
-  	<bean id="conceptDAO" class="com.chs.dao.ConceptDictionaryDAOImpl"></bean>
-    <bean id="conceptService" class="com.chs.service.ConceptServiceImpl"></bean>
+  	<bean id="conceptDAO" class="com.chs.dao.impl.ConceptDictionaryDAOImpl"></bean>
+    <bean id="conceptService" class="com.chs.service.impl.ConceptServiceImpl"></bean>
   
-  	<bean id="dissagDAO" class="com.chs.dao.DissagregationDAOImpl"></bean>
-    <bean id="dissagregationService" class="com.chs.service.DissagregationServiceImpl"></bean>
+  	<bean id="dissagDAO" class="com.chs.dao.impl.DissagregationDAOImpl"></bean>
+    <bean id="dissagregationService" class="com.chs.service.impl.DissagregationServiceImpl"></bean>
     
-    <bean id="topicDAO" class="com.chs.dao.TopicDAOImpl"></bean>
-    <bean id="topicService" class="com.chs.service.TopicServiceImpl"></bean>
+    <bean id="topicDAO" class="com.chs.dao.impl.TopicDAOImpl"></bean>
+    <bean id="topicService" class="com.chs.service.impl.TopicServiceImpl"></bean>
 
-    <bean id="usersTopicDAO" class="com.chs.dao.UsersTopicDAOImpl"></bean>
-    <bean id="usersTopicService" class="com.chs.service.UsersTopicServiceImpl"></bean>
+    <bean id="usersTopicDAO" class="com.chs.dao.impl.UsersTopicDAOImpl"></bean>
+    <bean id="usersTopicService" class="com.chs.service.impl.UsersTopicServiceImpl"></bean>
     
-    <bean id="publishService" class="com.chs.service.PublishServiceImpl"/>
+    <bean id="publishService" class="com.chs.service.impl.PublishServiceImpl"/>
     
     
     <tx:annotation-driven transaction-manager="transactionManager"/>

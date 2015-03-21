@@ -1,6 +1,5 @@
 package com.chs.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.chs.amqp.TopicList;
 import com.chs.entity.Topic;
 import com.chs.entity.UserEntity;
 import com.chs.entity.UsersTopic;
