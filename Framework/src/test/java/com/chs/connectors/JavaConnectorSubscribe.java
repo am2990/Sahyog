@@ -7,7 +7,7 @@ import com.rabbitmq.client.QueueingConsumer;
 
 public class JavaConnectorSubscribe {
 
-	  private final static String QUEUE_NAME = "swine";
+	  private final static String QUEUE_NAME = "Malaria";
 
 	  public static void main(String[] argv)
 	      throws java.io.IOException,

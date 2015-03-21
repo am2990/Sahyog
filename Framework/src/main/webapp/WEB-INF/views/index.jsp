@@ -9,7 +9,7 @@
 
   <meta charset="UTF-8">
 
-  <title>CodePen - Log-in</title>
+  <title>Sahyog - Log-in</title>
 
   <link href="<c:url value="/resources/css/jquery-ui.css" />" rel="stylesheet">
   <!-- <script src="<c:url value="/resources/js/jquery-ui.css" />"></script> -->
@@ -20,7 +20,8 @@
 <body>
 
   <div class="login-card">
-    <h1>Log-in</h1><br>
+  	<img src="/chs/resources/images/imgres.png" alt="IIITD Logo" width="165" height="85" border="0">
+    <h1>Sahyog Log-in</h1><br>
   	<form:form method="post" action="/chs/dashboard/">
   		<!--  <div th:if="${param.error}" class="alert alert-error">    
                     Invalid username and password.

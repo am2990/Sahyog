@@ -2,7 +2,7 @@
 <%@page session="true"%>
 <html>
 <head>
-<title>Login Page</title>
+<title>Sahyog Login Page</title>
 <style>
 .error {
 	padding: 15px;

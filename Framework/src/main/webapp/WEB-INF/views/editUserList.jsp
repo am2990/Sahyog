@@ -14,10 +14,11 @@
 
 <html>
     <head>
-        <title>Spring 3 hibernate integration example on www.howtodoinjava.com</title>
+        <title>Sahyog</title>
     </head>
     <body>
-    <h2>Employee Management Screen : Spring 3 hibernate integration example on www.howtodoinjava.com</h2>
+    <h2>Registration Page</h2>
+    <br>
     <form:form method="post" action="add" commandName="user">
         <table class="table">
         <tr>
@@ -36,13 +37,16 @@
             <td><form:label path="password"><spring:message code="label.password"/></form:label></td>
             <td><form:input path="password" type="password" class="form-control"/></td>
         </tr>
+        
         <tr>
             <td colspan="2">
                 <input type="submit" class="btn btn-default" value="<spring:message code="label.add"/>"/>
+                <a href="/chs" class="btn btn-danger">Cancel</a>
             </td>
         </tr>
     </table> 
     </form:form>
+    <!-- 
     <h3>Users</h3>
     <c:if  test="${!empty userList}">
 	    <table class="table table-striped">
@@ -62,5 +66,6 @@
     </c:forEach>
     </table>
     </c:if>
+     -->
     </body>
 </html>
